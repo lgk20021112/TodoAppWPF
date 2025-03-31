@@ -5,6 +5,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -19,6 +20,16 @@ namespace TodoAppWPF
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RemoveButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
