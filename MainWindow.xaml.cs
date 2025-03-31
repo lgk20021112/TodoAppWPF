@@ -17,19 +17,44 @@ namespace TodoAppWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        private TodoList _todoList; //Understreck för globalt objekt
         public MainWindow()
         {
             InitializeComponent();
+            _todoList = new TodoList();
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
+            string task = TaskTextBox.Text;
+            if (!string.IsNullOrEmpty(task))
+            {
+                _todoList.AddTask(task);
+                UpdateTaskList();
+                TaskTextBox.Clear();
+            }
+        }
 
+        /// <summary>
+        /// Uppdaterar listan med todo-items.
+        /// </summary>
+
+        private void UpdateTaskList()
+        {
+            TasksListBox.Items.Clear();
+            foreach (var task in _todoList.GetAllTasks())
+            {
+                TasksListBox.Items.Add(task);
+            }
         }
 
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
-
+            if (TasksListBox.SelectedIndex >= 0) 
+            {
+                _todoList.RemoveTask(TasksListBox.SelectedIndex);
+                UpdateTaskList();
+            }
         }
     }
 }
